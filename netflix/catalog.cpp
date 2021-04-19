@@ -11,6 +11,7 @@
 
 #include "catalog.hpp"
 #include "video_catalog.hpp"
+#include "exceptions.hpp"
 
 using nlohmann::json;
 
@@ -20,23 +21,24 @@ namespace NetflixCatalog {
 
 
 Catalog::Catalog() {};
-/*
-Catalog::Catalog(Catalog const &rhs) {};
 Catalog::~Catalog() {};
-*/
+
 
 void Catalog::initialize(string fileName) {
-    
-    // catalog = std::make_unique<VideoCatalog>(new VideoCatalog);
-    
-    catalog = new VideoCatalog();
+        
+    VideoCatalog *newCatalog = new VideoCatalog();
     
     std::ifstream i(fileName,std::ifstream::in);
+    if (!i.is_open()) {
+        throw fileNotFoundException;
+    }
 
     nlohmann::json j;
     i >> j;
     i.close();
-    catalog->deserialize(j);
+    newCatalog->deserialize(j);
+    catalog = std::make_unique<VideoCatalog>(*newCatalog);
+    
     
 }
 

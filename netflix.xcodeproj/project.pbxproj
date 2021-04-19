@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4DB1B950262B8BA2005CE6FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B94F262B8BA2005CE6FD /* main.cpp */; };
+		4DB1B95D262CF8DE005CE6FD /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B95B262CF8DE005CE6FD /* video.cpp */; };
+		4DB1B961262CFF62005CE6FD /* content.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B95F262CFF62005CE6FD /* content.cpp */; };
+		4DB1B966262D048C005CE6FD /* preroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B964262D048C005CE6FD /* preroll.cpp */; };
+		4DB1B96A262D07AD005CE6FD /* tags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B968262D07AD005CE6FD /* tags.cpp */; };
+		4DB1B96E262D53F6005CE6FD /* video_catalog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B96C262D53F6005CE6FD /* video_catalog.cpp */; };
+		4DB1B973262D59F9005CE6FD /* catalog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B971262D59F9005CE6FD /* catalog.cpp */; };
+		4DB1B97A262D7E19005CE6FD /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1B979262D7E19005CE6FD /* exceptions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +32,24 @@
 /* Begin PBXFileReference section */
 		4DB1B94C262B8BA2005CE6FD /* netflix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = netflix; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB1B94F262B8BA2005CE6FD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		4DB1B958262CAA5D005CE6FD /* catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
+		4DB1B95B262CF8DE005CE6FD /* video.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video.cpp; sourceTree = "<group>"; };
+		4DB1B95C262CF8DE005CE6FD /* video.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video.hpp; sourceTree = "<group>"; };
+		4DB1B95F262CFF62005CE6FD /* content.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = content.cpp; sourceTree = "<group>"; };
+		4DB1B960262CFF62005CE6FD /* content.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = content.hpp; sourceTree = "<group>"; };
+		4DB1B964262D048C005CE6FD /* preroll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = preroll.cpp; sourceTree = "<group>"; };
+		4DB1B965262D048C005CE6FD /* preroll.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = preroll.hpp; sourceTree = "<group>"; };
+		4DB1B968262D07AD005CE6FD /* tags.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tags.cpp; sourceTree = "<group>"; };
+		4DB1B969262D07AD005CE6FD /* tags.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tags.hpp; sourceTree = "<group>"; };
+		4DB1B96C262D53F6005CE6FD /* video_catalog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_catalog.cpp; sourceTree = "<group>"; };
+		4DB1B96D262D53F6005CE6FD /* video_catalog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_catalog.hpp; sourceTree = "<group>"; };
+		4DB1B971262D59F9005CE6FD /* catalog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = catalog.cpp; sourceTree = "<group>"; };
+		4DB1B972262D59F9005CE6FD /* catalog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catalog.hpp; sourceTree = "<group>"; };
+		4DB1B975262D780F005CE6FD /* catalog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = catalog.json; sourceTree = SOURCE_ROOT; };
+		4DB1B977262D7994005CE6FD /* exceptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exceptions.hpp; sourceTree = "<group>"; };
+		4DB1B979262D7E19005CE6FD /* exceptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exceptions.cpp; sourceTree = "<group>"; };
+		4DB1B97C262DD7D0005CE6FD /* catalog2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = catalog2.json; sourceTree = SOURCE_ROOT; };
+		4DB1B97E262DDB23005CE6FD /* bad_catalog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bad_catalog.json; sourceTree = SOURCE_ROOT; };
+		4DB1B980262DDC1D005CE6FD /* API.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = API.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +82,25 @@
 		4DB1B94E262B8BA2005CE6FD /* netflix */ = {
 			isa = PBXGroup;
 			children = (
+				4DB1B97E262DDB23005CE6FD /* bad_catalog.json */,
+				4DB1B97C262DD7D0005CE6FD /* catalog2.json */,
+				4DB1B979262D7E19005CE6FD /* exceptions.cpp */,
+				4DB1B977262D7994005CE6FD /* exceptions.hpp */,
+				4DB1B975262D780F005CE6FD /* catalog.json */,
+				4DB1B95F262CFF62005CE6FD /* content.cpp */,
+				4DB1B968262D07AD005CE6FD /* tags.cpp */,
+				4DB1B969262D07AD005CE6FD /* tags.hpp */,
+				4DB1B960262CFF62005CE6FD /* content.hpp */,
 				4DB1B94F262B8BA2005CE6FD /* main.cpp */,
-				4DB1B958262CAA5D005CE6FD /* catalog.json */,
+				4DB1B980262DDC1D005CE6FD /* API.md */,
+				4DB1B95B262CF8DE005CE6FD /* video.cpp */,
+				4DB1B95C262CF8DE005CE6FD /* video.hpp */,
+				4DB1B964262D048C005CE6FD /* preroll.cpp */,
+				4DB1B965262D048C005CE6FD /* preroll.hpp */,
+				4DB1B96C262D53F6005CE6FD /* video_catalog.cpp */,
+				4DB1B96D262D53F6005CE6FD /* video_catalog.hpp */,
+				4DB1B971262D59F9005CE6FD /* catalog.cpp */,
+				4DB1B972262D59F9005CE6FD /* catalog.hpp */,
 			);
 			path = netflix;
 			sourceTree = "<group>";
@@ -120,7 +161,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DB1B966262D048C005CE6FD /* preroll.cpp in Sources */,
+				4DB1B97A262D7E19005CE6FD /* exceptions.cpp in Sources */,
+				4DB1B96E262D53F6005CE6FD /* video_catalog.cpp in Sources */,
+				4DB1B973262D59F9005CE6FD /* catalog.cpp in Sources */,
+				4DB1B961262CFF62005CE6FD /* content.cpp in Sources */,
 				4DB1B950262B8BA2005CE6FD /* main.cpp in Sources */,
+				4DB1B96A262D07AD005CE6FD /* tags.cpp in Sources */,
+				4DB1B95D262CF8DE005CE6FD /* video.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

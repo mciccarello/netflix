@@ -35,7 +35,7 @@ void VideoCatalog::deserialize(map<string,json> const &jsonMap)
 
 
 
-bool VideoCatalog::findPrerollVideo(string const &prerollName, string const &country, string const &aspect, Video &videoOut)
+bool VideoCatalog::findPrerollVideo(string const &prerollName, string const &country, string const &language, string const &aspect, Video &videoOut)
 {
     auto prerollIt = prerolls.find(prerollName);
     if (prerollIt == prerolls.end()) {
@@ -45,7 +45,7 @@ bool VideoCatalog::findPrerollVideo(string const &prerollName, string const &cou
     for(auto video : videos) {
         auto countries = video.getCountries();
         if (countries.find(country) != countries.end()) {
-            if (video.getAspect() == aspect) {
+            if (video.getAspect() == aspect && video.getLanguage() == language) {
                 videoOut = video;
                 return true;
             }
@@ -56,7 +56,7 @@ bool VideoCatalog::findPrerollVideo(string const &prerollName, string const &cou
 }
 
 
-bool VideoCatalog::getOnePlayList(Video contentVideo, string country, vector<string> const &prerollNames, list<VideoPlayList> &playLists) {
+bool VideoCatalog::getOnePlayList(Video contentVideo, string const &country, string const &language, vector<string> const &prerollNames, list<VideoPlayList> &playLists) {
 //
 // given a content video and a list of preroll names, see if we can satisfy the
 // prerolls (matching country, aspect, etc). If so, create a playlist from the content
@@ -69,7 +69,7 @@ bool VideoCatalog::getOnePlayList(Video contentVideo, string country, vector<str
         // for each named preroll there should (hopefully) be one matching preroll video
         // add each to the list of videos
         Video prerollVideo;
-        if (!findPrerollVideo(prerollName, country, contentVideo.getAspect(), prerollVideo))
+        if (!findPrerollVideo(prerollName, country, language, contentVideo.getAspect(), prerollVideo))
         {
             // no preroll video satisfies -- can't make a playlist from this content video
             return false;
@@ -107,7 +107,7 @@ void VideoCatalog::getPlayLists(string contentName, string country, list<VideoPl
             // found the right content video for the country. Now try to find
             // all specified preroll, matching country, aspect ratio
             auto prerollNames = contentIt->second.getPrerollNames();
-            getOnePlayList(contentVideo, country, contentIt->second.getPrerollNames(), playLists);
+            getOnePlayList(contentVideo, country, contentVideo.getLanguage(), contentIt->second.getPrerollNames(), playLists);
         }
         
     }

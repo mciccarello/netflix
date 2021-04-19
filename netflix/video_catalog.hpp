@@ -62,8 +62,8 @@ class VideoCatalog {
     map<string,Content> contents;
     map<string,Preroll> prerolls;
     
-    bool findPrerollVideo(string const &prerollName, string const &country, string const &aspect, Video &videoOut);
-    bool getOnePlayList(Video contentVideo, string country, vector<string> const &prerollNames, list<VideoPlayList> &playLists);
+    bool findPrerollVideo(string const &prerollName, string const &country, string const &language, string const &aspect, Video &videoOut);
+    bool getOnePlayList(Video contentVideo, string const &country, string const &language, vector<string> const &prerollNames, list<VideoPlayList> &playLists);
     
     
 public:

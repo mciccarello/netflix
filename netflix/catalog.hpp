@@ -31,7 +31,7 @@ class VideoCatalog;
 
 class Catalog {
     
-    VideoCatalog *catalog;
+    std::unique_ptr<VideoCatalog> catalog;
 
 public:
     
@@ -45,6 +45,8 @@ public:
     };
     
     Catalog();
+    ~Catalog(); // seem to need to implement this because of the incomplete VideoCatalog class I used
+    
     
     void initialize(std::string filePath);
     // ------------------------------------------------------------------
