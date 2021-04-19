@@ -12,102 +12,31 @@
 
 #include "json.hpp"
 
+#include "video.hpp"
+#include "content.hpp"
+#include "preroll.hpp"
+
 using std::string;
 using std::vector;
 using std::map;
 using nlohmann::json;
 
+using NetflixCatalog::Video;
+using NetflixCatalog::Content;
+using NetflixCatalog::Preroll;
 
 
-class Video {
-        
-    string name;
-    vector<string> countries;
-    string language;
-    string aspect;
-    
-public:
-    
-    void deserialize(map<string, json> const &jsonMap) {
-        name = jsonMap.at("name");
-        json attributes = jsonMap.at("attributes");
-        language = attributes.at("language");
-        aspect = attributes.at("aspect");
-        json countriesJson = attributes.at("countries");
-        for(auto it=countriesJson.begin(); it != countriesJson.end(); ++ it)
-        {
-            countries.push_back(*it);
-        }
-        std::cout << "video " << name << std::endl;
-    }
-    
-    
-    
+
+
+
+
+/*
+struct CatalogMembers {
+    map<string,Content> content;
+    map<string,Preroll> prerolls;
     
 };
-
-
-
-class Content {
-  
-    string name;
-    vector<string> prerolls;
-    vector<Video> videos;
-    
-public:
-    string getName() { return name; }
-    
-    void deserialize(map<string, json> const &jsonMap)
-    {
-        name = jsonMap.at("name");
-        vector<json> prerollsJson = jsonMap.at("preroll");
-        for(auto it = prerollsJson.begin(); it != prerollsJson.end(); ++it)
-        {
-            string preroll = (*it).at("name");
-            prerolls.push_back(preroll);
-        }
-        vector<json> videosJson = jsonMap.at("videos");
-        for(auto it = videosJson.begin(); it != videosJson.end(); ++it)
-        {
-            Video video;
-            map<string,json> videoJson = *it;
-            video.deserialize(videoJson);
-            videos.push_back(video);
-        }
-        std::cout << "content " << name << std::endl;
-        
-    }
-    
-};
-
-
-class Preroll {
-    
-    
-    string name;
-    vector<Video> videos;
-    
-public:
-    string getName() { return name; }
-    void deserialize(map<string, json> const &jsonMap)
-    {
-        name = jsonMap.at("name");
-        vector<json> videosJson = jsonMap.at("videos");
-        for(auto it = videosJson.begin(); it != videosJson.end(); ++it)
-        {
-            Video video;
-            map<string,json> videoJson = *it;
-            video.deserialize(videoJson);
-            videos.push_back(video);
-        }
-        std::cout << "preroll " << name << std::endl;
-        
-    }
-    
-    
-};
-
-
+*/
 
 class Catalog {
     
