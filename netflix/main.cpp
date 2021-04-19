@@ -19,6 +19,7 @@
 using std::string;
 using std::list;
 using std::cout;
+using std::endl;
 
 
 
@@ -34,6 +35,18 @@ using NetflixCatalog::Catalog;
    ******************************************************************************************* */
 
 
+void printPlayLists(list<Catalog::PlayList> const &playLists) {
+    
+    for(auto playList : playLists) {
+        std::cout << "Playlist (" << playList.getAspect() << "): ";
+        for (auto video : playList.getVideoNames()) {
+            std::cout << video << " ";
+        }
+        std::cout << endl;
+    }
+    
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -42,18 +55,27 @@ int main(int argc, const char * argv[]) {
         
         Catalog catalog;
         catalog.initialize("catalog.json");
+        
+        
+        cout << endl << "Test case MI3, US: " << endl;
         list<Catalog::PlayList> playLists;
+        catalog.getPlayLists("MI3", "US", playLists);
+        printPlayLists(playLists);
+        
+        
+        cout << endl << "Test case MI3, CA: " << endl;
+        playLists.clear();
+        catalog.getPlayLists("MI3", "CA", playLists);
+        printPlayLists(playLists);
+        
+        cout << endl << "Test case MI3, UK: " << endl;
+        playLists.clear();
         catalog.getPlayLists("MI3", "UK", playLists);
-        for(auto playList : playLists) {
-            std::cout << "Playlist (" << playList.getAspect() << "): ";
-            list<string> const &videos = playList.getVideoNames();
-            for (auto video : videos) {
-                std::cout << video << " ";
-            }
-            std::cout << std::endl;
-        }
+        printPlayLists(playLists);
+                
+        
     } catch (std::exception &e) {
-        cout << e.what() << std::endl;
+        cout << e.what() << endl;
     }
     return 0;
 }
