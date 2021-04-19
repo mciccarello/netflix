@@ -11,35 +11,36 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 #include "json.hpp"
 
 using std::string;
 using std::vector;
 using std::map;
-using std::unique_ptr;
+using std::shared_ptr;
+using std::set;
 using nlohmann::json;
 
 namespace NetflixCatalog {
 
 
-
-
-struct VideoMembers;
+struct VideoMemberData;
 
 class Video {
        
-    unique_ptr<struct VideoMembers> members;
+    
+    string name;
+    set<string> countries;
+    string language;
+    string aspect;
+    
     
 public:
-    
-    Video();
-    Video(Video const &);
-    ~Video();
-    
-    string const & getName() const;
-    vector<string> const & getCountries() const;
-    string const & getLanguage() const;
-    string const & getAspect() const;
+        
+    string const & getName() const { return name; }
+    set<string> const & getCountries() const { return countries; }
+    string const & getLanguage() const { return language; }
+    string const & getAspect() const { return aspect; }
 
     
     void deserialize(map<string, json> const &jsonMap);

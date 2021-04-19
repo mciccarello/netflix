@@ -9,7 +9,7 @@
 
 namespace NetflixCatalog {
 
-JSONTags jsonTags;
+JSONTags const jsonTags;
 
 } // namespace NetflixCatalog
 

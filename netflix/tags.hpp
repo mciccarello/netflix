@@ -25,7 +25,7 @@ struct JSONTags {
     string videos = "videos";
 };
 
-extern JSONTags jsonTags;
+extern JSONTags const jsonTags;
 
 } // namespace NetflixCatalog
 

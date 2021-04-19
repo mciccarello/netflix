@@ -9,76 +9,23 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <list>
 
 #include "json.hpp"
 
 #include "video.hpp"
 #include "content.hpp"
 #include "preroll.hpp"
+#include "catalog.hpp"
+
+#include "tags.hpp"
 
 using std::string;
-using std::vector;
-using std::map;
+using std::list;
 using nlohmann::json;
 
-using NetflixCatalog::Video;
-using NetflixCatalog::Content;
-using NetflixCatalog::Preroll;
-
-
-
-
-
-
-/*
-struct CatalogMembers {
-    map<string,Content> content;
-    map<string,Preroll> prerolls;
-    
-};
-*/
-
-class Catalog {
-    
-    map<string,Content> contents;
-    map<string,Preroll> prerolls;
-    
-    
-public:
-    
-    void deserialize(map<string,json> const &jsonMap)
-    //
-    // This slight abuse of the term "deserialize," because it only does half the job,
-    // relying on a json library having already parsed the serial json document file.
-    // It takes the parsed json document in the form of a heirarchy of maps and vectors
-    // of values and converts it into C++ a Catalog class, and its component and subcomponent
-    // classes (Content, Preroll and Video), as requested in the requirements document.
-    //
-    {
-        vector<json> contentJson = jsonMap.at("content");
-        for(auto it = contentJson.begin(); it != contentJson.end(); ++it) {
-            Content content;
-            content.deserialize(*it);
-            contents.insert(std::pair<string,Content>(content.getName(),content));
-        }
-        vector<json> prerollJson = jsonMap.at("preroll");
-        for(auto it = prerollJson.begin(); it != prerollJson.end(); ++it) {
-            Preroll preroll;
-            preroll.deserialize(*it);
-            prerolls.insert(std::pair<string,Preroll>(preroll.getName(),preroll));
-        }
-    }
-    
-    
-};
-
-
-
-
-
-
-
-// std::string const Video::aspectRatios[] = { "4:3", "16:9" };
+using NetflixCatalog::Catalog;
+using NetflixCatalog::PlayList;
 
 
 int main(int argc, const char * argv[]) {
@@ -89,12 +36,19 @@ int main(int argc, const char * argv[]) {
     i >> j;
     i.close();
     
-    
     Catalog catalog;
     catalog.deserialize(j);
     
+    list<PlayList> playLists;
+    catalog.getPlayLists("MI3", "US", playLists);
+    for(auto playList : playLists) {
+        std::cout << "Playlist: ";
+        vector<Video> const &videos = playList.getVideos();
+        for (auto video : videos) {
+            std::cout << video.getName() + " ";
+        }
+        std::cout << std::endl;
+    }
     
-    // insert code here...
-    std::cout << "Hello, World!\n";
     return 0;
 }

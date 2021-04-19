@@ -17,21 +17,28 @@
 using std::string;
 using std::vector;
 using std::map;
+using std::shared_ptr;
+
 using nlohmann::json;
+
 
 namespace NetflixCatalog {
 
 
+struct ContentMemberData;
+
 class Content {
-  
-    string name;
-    vector<string> prerolls;
-    vector<Video> videos;
     
+    
+    string name;
+    vector<string> prerollNames;
+    vector<Video> videos;
+      
 public:
+
     
     string const & getName() const { return name; }
-    vector<string> const & getPrerolls() const { return prerolls; }
+    vector<string> const & getPrerollNames() const { return prerollNames; }
     vector<Video> const & getVideos() const { return videos; }
     
     
