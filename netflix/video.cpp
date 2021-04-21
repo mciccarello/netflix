@@ -29,7 +29,8 @@ void Video::deserialize(map<string, json> const &jsonMap) {
             countries.insert((string)*it);
         }
     } catch(std::exception e) {
-        throw jsonException;
+        JSONException je("Error parsing JSON");
+        throw je;
     }
 }
 

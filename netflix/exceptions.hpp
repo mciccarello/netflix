@@ -9,9 +9,18 @@ namespace NetflixCatalog {
 
 class JSONException : public std::exception {
     
+    const char *const detail = nullptr;
+    
     virtual const char *what() const throw()
     {
-        return "Error parsing JSON";
+        return detail;
+    }
+    
+
+public:
+    
+    JSONException(const char * const detail) : detail(detail){
+        
     }
     
 };

@@ -11,7 +11,7 @@
 
 namespace NetflixCatalog {
 
-JSONException jsonException;
+
 FileNotFoundException fileNotFoundException;
 
 

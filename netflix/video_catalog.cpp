@@ -7,6 +7,7 @@
 
 #include "video_catalog.hpp"
 #include "tags.hpp"
+#include "exceptions.hpp"
 
 namespace NetflixCatalog {
 
@@ -19,17 +20,22 @@ void VideoCatalog::deserialize(map<string,json> const &jsonMap)
 // classes (Content, Preroll and Video), as requested in the requirements document.
 //
 {
-    vector<json> contentJson = jsonMap.at(jsonTags.content);
-    for(auto it = contentJson.begin(); it != contentJson.end(); ++it) {
-        Content content;
-        content.deserialize(*it);
-        contents.insert(std::pair<string,Content>(content.getName(),content));
-    }
-    vector<json> prerollJson = jsonMap.at(jsonTags.preroll);
-    for(auto it = prerollJson.begin(); it != prerollJson.end(); ++it) {
-        Preroll preroll;
-        preroll.deserialize(*it);
-        prerolls.insert(std::pair<string,Preroll>(preroll.getName(),preroll));
+    try {
+        vector<json> contentJson = jsonMap.at(jsonTags.content);
+        for(auto it = contentJson.begin(); it != contentJson.end(); ++it) {
+            Content content;
+            content.deserialize(*it);
+            contents.insert(std::pair<string,Content>(content.getName(),content));
+        }
+        vector<json> prerollJson = jsonMap.at(jsonTags.preroll);
+        for(auto it = prerollJson.begin(); it != prerollJson.end(); ++it) {
+            Preroll preroll;
+            preroll.deserialize(*it);
+            prerolls.insert(std::pair<string,Preroll>(preroll.getName(),preroll));
+        }
+    } catch(std::exception e) {
+        JSONException je("Error parsing JSON");
+        throw je;
     }
 }
 

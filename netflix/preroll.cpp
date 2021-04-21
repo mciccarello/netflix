@@ -23,7 +23,8 @@ void Preroll::deserialize(map<string, json> const &jsonMap)
             videos.push_back(video);
         }
     } catch(std::exception e) {
-        throw jsonException;
+        JSONException je("Error parsing JSON");
+        throw je;
     }
     
 }
